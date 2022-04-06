@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Mon Mar 28 04:53:50 2022 as: nmap -Pn -p- -sV -oA nmap/77.224.11.136 77.224.11.136 -->
+<nmaprun scanner="nmap" args="nmap -Pn -p- -sV -oA nmap/77.224.11.136 77.224.11.136" start="1648457630" startstr="Mon Mar 28 04:53:50 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<taskprogress task="Connect Scan" time="1648457678" percent="5.62" remaining="790" etc="1648458467"/>
+<taskprogress task="Connect Scan" time="1648457975" percent="40.03" remaining="516" etc="1648458490"/>
+<taskprogress task="Connect Scan" time="1648458452" percent="81.72" remaining="184" etc="1648458636"/>
+<host starttime="1648457631" endtime="1648458716"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="77.224.11.136" addrtype="ipv4"/>
+<hostnames>
+<hostname name="static-136-11-224-77.ipcom.comunitel.net" type="PTR"/>
+</hostnames>
+<ports><extraports state="filtered" count="65533">
+<extrareasons reason="no-response" count="65533" proto="tcp" ports="1-112,114-442,444-65535"/>
+</extraports>
+<port protocol="tcp" portid="113"><state state="closed" reason="conn-refused" reason_ttl="0"/><service name="ident" method="table" conf="3"/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Apache httpd" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:apache:http_server</cpe></service></port>
+</ports>
+<times srtt="119347" rttvar="24026" to="215451"/>
+</host>
+<runstats><finished time="1648458717" timestr="Mon Mar 28 05:11:57 2022" summary="Nmap done at Mon Mar 28 05:11:57 2022; 1 IP address (1 host up) scanned in 1086.27 seconds" elapsed="1086.27" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
