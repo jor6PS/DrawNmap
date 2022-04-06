@@ -17,16 +17,7 @@ Múltiples archivos
 
 ## Descripción
 
-Herramienta desarrollada en Python para mostrar en un diagrama de red el contenido extraído de un escaneo nmap. En el diagrama se muestran los activos en cada uno de los nodos y es posible visualizar e interactuar a partir del resto de información obtenida, como los puertos abiertos.
-
-## Desarrollo
-
-- Mostrar los nodos en el diagrama de red a partir de un escaneo Nmap en formato XML
-- Mostrar información útil en cada uno de los nodos al poner el puntero en el nodo
-- Aplicar filtros para alterar el diagrama
-  - Filtrar por puerto, mostrando únicamente los nodos que tengan el puerto seleccionado habilitado
-  - Filtrar por etiquetas, que muestren por ejemplo solo los puertos relacionados con un entorno corporativo
-- Mostrar los nodos de distinto color en base a la cantidad de puertos abiertos detectados
+Herramienta desarrollada en Python para mostrar en un diagrama de red el contenido de un escaneo Nmap en formato XML. Los nodos representan cada uno de los activos escaneados en al red con sus puertos abiertos correspondientes. El filtrado de puertos permite mostrar en el gráfico únicamente los dispositivos que tienen habilitado ese puerto.
 
 ## Rquisitos
 
