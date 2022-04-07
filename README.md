@@ -7,6 +7,12 @@ Herramienta desarrollada en Python para mostrar en un diagrama de red el conteni
 ## Usage
 
 ```console
+~DESCARGA~
+
+# git clone --recurse-submodules https://github.com/jorperse/DrawNmap.git
+
+~COMANDO~
+
 # python3 DrawNmap.py <nmap xml format>
 
 ~EJEMPLOS~
