@@ -18,10 +18,10 @@ COMANDO
 EJEMPLOS
 
 Archivo único
-# python3 DrawNmap.py /examples/nmap1.xml
+# python3 DrawNmap.py examples/nmap1.xml
 
 Múltiples archivos
-# python3 DrawNmap.py /examples/*.xml
+# python3 DrawNmap.py examples/*.xml
 
 ```
 
