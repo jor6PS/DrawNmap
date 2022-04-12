@@ -221,7 +221,7 @@ def update_figure(value):
         return network_graph(df)
     else:
         for port in ctx.triggered[0]["value"]:
-                filter_df = filter_df.append(df[df['Port'] == port])
+                filter_df = pd.concat([filter_df, pd.DataFrame.from_records(df[df['Port'] == port])])
         return network_graph(filter_df)
 
 
