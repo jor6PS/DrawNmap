@@ -9,7 +9,7 @@ Herramienta desarrollada en Python para mostrar en un diagrama de red el conteni
 ```console
 DESCARGA
 
-# git clone --recurse-submodules https://github.com/jorperse/DrawNmap.git
+# git clone --recurse-submodules https://github.com/jor6PS/DrawNmap.git
 
 COMANDO
 
@@ -37,4 +37,4 @@ Múltiples archivos
 
 ## Apariencia
 
-![Alt text](https://github.com/jorperse/DrawNmap/blob/main/Screenshots/drawnmap_vid.gif?raw=true "Estado actual")
+![Alt text](https://github.com/jor6PS/DrawNmap/blob/main/Screenshots/drawnmap_vid.gif?raw=true "Estado actual")
