@@ -35,6 +35,10 @@ else:
 ################### CREATE DATAFRAME FROM CSV ###################
 
 df = pd.read_csv('output.csv', delimiter=',')
+types_dict = {'Port': int}
+for col, col_type in types_dict.items():
+        df[col] = df[col].astype(col_type)
+
 # Remove duplicated in second loop
 df = df.drop_duplicates(subset=["IP", "Port"])
 
