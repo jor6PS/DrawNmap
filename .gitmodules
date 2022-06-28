@@ -1,3 +1,6 @@
 [submodule "Nmap-XML-to-CSV"]
 	path = Nmap-XML-to-CSV
 	url = https://github.com/NetsecExplained/Nmap-XML-to-CSV.git
+[submodule "nmaptocsv"]
+	path = nmaptocsv
+	url = https://github.com/maaaaz/nmaptocsv.git

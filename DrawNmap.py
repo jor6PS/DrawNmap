@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import os
 import subprocess
 import pandas as pd
 import networkx as nx
@@ -17,7 +18,7 @@ app = dash.Dash(
 )
 
 ################### GET XML ARGUMENT FROM COMMAND LINE ###################
-if '.xml' not in str(sys.argv):
+if '.nmap' not in str(sys.argv):
     sys.stderr.write("Usage: {} FILENAME\n".format(sys.argv[0]))
     exit()
 
@@ -25,39 +26,36 @@ filename = sys.argv
 
 ################### CONVERT XML TO CSV ###################
 
-# Check if parameter is a list or a file
 if isinstance(filename, list):
-    for xmls in filename:
-        subprocess.call(['python3', 'Nmap-XML-to-CSV/xml2csv.py', '-f', xmls, '-csv', 'output.csv'], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+    for nmaps in filename:
+        subprocess.call(['python', 'nmaptocsv/nmaptocsv.py', '-i', nmaps, '>> output.csv'], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
 else:
-    subprocess.call(['python3', 'Nmap-XML-to-CSV/xml2csv.py', '-f', filename, '-csv', 'output.csv'], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+        subprocess.call(['python', 'nmaptocsv/nmaptocsv.py', '-i', filename[1], '-o', 'output.csv'], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
 
 ################### CREATE DATAFRAME FROM CSV ###################
 
-df = pd.read_csv('output.csv', delimiter=',')
-types_dict = {'Port': int}
-for col, col_type in types_dict.items():
-        df[col] = df[col].astype(col_type)
+df = pd.read_csv('output.csv', delimiter=';')
+df = df.fillna(0)
+df["PORT"] = df["PORT"].astype(int)
 
 # Remove duplicated in second loop
-df = df.drop_duplicates(subset=["IP", "Port"])
+df = df.drop_duplicates(subset=["IP", "PORT"])
 
 # Extract all ports in a list
-all_ports =  df['Port'].tolist()
+all_ports =  df['PORT'].tolist()
 all_ports = sorted(set(all_ports))
 
 ################### PREPARE GRAPH ###################
 def network_graph(dataframe):
     # Group repeated IPs and common elements as ports, services....
     groupby_column = 'IP'
-    aggregate_port = 'Port'
-    aggregate_service = 'Service'
-    aggregate_host = 'Host'
-    aggregate_os = 'OS'
-    aggregate_product = 'Product'
+    aggregate_port = 'PORT'
+    aggregate_service = 'SERVICE'
+    aggregate_host = 'FQDN'
+    aggregate_product = 'VERSION'
 
-    agg_df = dataframe.groupby('IP').aggregate({aggregate_port: list, aggregate_service: list,aggregate_host: list, aggregate_os: list, aggregate_product: list})
-    df_alias = dataframe.drop(columns=[aggregate_port,aggregate_service,aggregate_host,aggregate_os,aggregate_product]).set_index(groupby_column)
+    agg_df = dataframe.groupby('IP').aggregate({aggregate_port: list, aggregate_service: list,aggregate_host: list, aggregate_product: list})
+    df_alias = dataframe.drop(columns=[aggregate_port,aggregate_service,aggregate_host,aggregate_product]).set_index(groupby_column)
 
     df = agg_df.join(df_alias).reset_index(groupby_column).drop_duplicates(groupby_column).reset_index(drop=True)
 
@@ -68,9 +66,9 @@ def network_graph(dataframe):
     df['Subnet'] = subnet_ips
 
     # EXTRACT NODES AND EDGES FROM DATAFRAME
-    G = nx.from_pandas_edgelist(df, 'Subnet', 'IP', ['Host','OS','Proto','Port','Service','Product','Service FP','NSE Script ID','NSE Script Output','Notes'])
-    nx.set_node_attributes(G, df.set_index('IP')['Port'].to_dict(), 'Port')
-    nx.set_node_attributes(G, df.set_index('IP')['Service'].to_dict(), 'Service')
+    G = nx.from_pandas_edgelist(df, 'Subnet', 'IP', ['FQDN','PORT','PROTOCOL','SERVICE','VERSION'])
+    nx.set_node_attributes(G, df.set_index('IP')['PORT'].to_dict(), 'PORT')
+    nx.set_node_attributes(G, df.set_index('IP')['SERVICE'].to_dict(), 'SERVICE')
 
     # get a x,y position for each node
     pos = nx.layout.spring_layout(G)
@@ -148,11 +146,11 @@ def network_graph(dataframe):
         x, y = G.nodes[node]['pos']
         node_trace['x'] += tuple([x])
         node_trace['y'] += tuple([y])
-        if G.nodes[node].get('Port') != None:
-            hovertext = str(G.nodes[node]['Port']) + "<br>" + str(G.nodes[node]['Service'])
+        if G.nodes[node].get('PORT') != None:
+            hovertext = str(G.nodes[node]['PORT']) + "<br>" + str(G.nodes[node]['SERVICE'])
             node_trace['hovertext'] += tuple([hovertext])
-            len_nports.append(len(G.nodes[node]['Port']))
-            len_nports_excp.append(len(G.nodes[node]['Port']))
+            len_nports.append(len(G.nodes[node]['PORT']))
+            len_nports_excp.append(len(G.nodes[node]['PORT']))
         else:
             hovertext = ""
             node_trace['hovertext'] += tuple([hovertext])
@@ -225,7 +223,7 @@ def update_figure(value):
         return network_graph(df)
     else:
         for port in ctx.triggered[0]["value"]:
-                filter_df = pd.concat([filter_df, pd.DataFrame.from_records(df[df['Port'] == port])])
+                filter_df = pd.concat([filter_df, pd.DataFrame.from_records(df[df['PORT'] == port])])
         return network_graph(filter_df)
 
 
