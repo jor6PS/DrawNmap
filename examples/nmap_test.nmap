@@ -1,0 +1,134 @@
+# Nmap 7.92 scan initiated Tue Jun 28 14:07:42 2022 as: nmap -Pn -oA nmap_test 192.169.5.0/24
+Nmap scan report for 192-169-5-1-static.despegar.net (192.169.5.1)
+Host is up (0.0046s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT     STATE SERVICE
+9000/tcp open  cslistener
+MAC Address: CC:2D:21:A5:59:48 (Tenda Technology,Ltd.Dongguan branch)
+
+Nmap scan report for 192-169-5-4-static.despegar.net (192.169.5.4)
+Host is up (0.050s latency).
+All 1000 scanned ports on 192-169-5-4-static.despegar.net (192.169.5.4) are in ignored states.
+Not shown: 1000 closed tcp ports (reset)
+MAC Address: CC:2D:21:A5:59:50 (Tenda Technology,Ltd.Dongguan branch)
+
+Nmap scan report for 192-169-5-5-static.despegar.net (192.169.5.5)
+Host is up (0.00090s latency).
+All 1000 scanned ports on 192-169-5-5-static.despegar.net (192.169.5.5) are in ignored states.
+Not shown: 1000 closed tcp ports (reset)
+MAC Address: CC:2D:21:04:13:E0 (Tenda Technology,Ltd.Dongguan branch)
+
+Nmap scan report for 192-169-5-27-static.despegar.net (192.169.5.27)
+Host is up (0.021s latency).
+All 1000 scanned ports on 192-169-5-27-static.despegar.net (192.169.5.27) are in ignored states.
+Not shown: 1000 closed tcp ports (reset)
+MAC Address: CC:2D:21:A5:59:58 (Tenda Technology,Ltd.Dongguan branch)
+
+Nmap scan report for 192-169-5-52-static.despegar.net (192.169.5.52)
+Host is up (0.028s latency).
+Not shown: 998 closed tcp ports (reset)
+PORT      STATE SERVICE
+49153/tcp open  unknown
+62078/tcp open  iphone-sync
+MAC Address: 3E:33:B3:26:23:68 (Unknown)
+
+Nmap scan report for 192-169-5-59-static.despegar.net (192.169.5.59)
+Host is up (0.0050s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT     STATE SERVICE
+6668/tcp open  irc
+MAC Address: 68:57:2D:82:E2:0C (Tuya Smart)
+
+Nmap scan report for 192-169-5-66-static.despegar.net (192.169.5.66)
+Host is up (0.0044s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT     STATE SERVICE
+6668/tcp open  irc
+MAC Address: 50:8A:06:5A:D8:71 (Tuya Smart)
+
+Nmap scan report for 192-169-5-73-static.despegar.net (192.169.5.73)
+Host is up (0.00014s latency).
+Not shown: 994 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+1042/tcp open  afrog
+1043/tcp open  boinc
+3389/tcp open  ms-wbt-server
+MAC Address: F0:2F:74:32:25:60 (Asustek Computer)
+
+Nmap scan report for 192-169-5-136-static.despegar.net (192.169.5.136)
+Host is up (0.0021s latency).
+Not shown: 995 closed tcp ports (reset)
+PORT      STATE SERVICE
+8008/tcp  open  http
+8009/tcp  open  ajp13
+8443/tcp  open  https-alt
+9000/tcp  open  cslistener
+10001/tcp open  scp-config
+MAC Address: E4:F0:42:33:0A:16 (Google)
+
+Nmap scan report for 192-169-5-143-static.despegar.net (192.169.5.143)
+Host is up (0.053s latency).
+Not shown: 995 closed tcp ports (reset)
+PORT      STATE SERVICE
+8008/tcp  open  http
+8009/tcp  open  ajp13
+8443/tcp  open  https-alt
+9000/tcp  open  cslistener
+10001/tcp open  scp-config
+MAC Address: 1C:53:F9:2B:E7:56 (Google)
+
+Nmap scan report for 192-169-5-145-static.despegar.net (192.169.5.145)
+Host is up (0.0045s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT     STATE SERVICE
+6668/tcp open  irc
+MAC Address: 68:57:2D:83:1B:06 (Tuya Smart)
+
+Nmap scan report for 192-169-5-146-static.despegar.net (192.169.5.146)
+Host is up (0.063s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT     STATE SERVICE
+6668/tcp open  irc
+MAC Address: 50:02:91:03:D7:B3 (Espressif)
+
+Nmap scan report for 192-169-5-199-static.despegar.net (192.169.5.199)
+Host is up (0.0057s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT     STATE SERVICE
+6668/tcp open  irc
+MAC Address: 68:57:2D:83:1C:3D (Tuya Smart)
+
+Nmap scan report for 192-169-5-206-static.despegar.net (192.169.5.206)
+Host is up (0.038s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT     STATE SERVICE
+6668/tcp open  irc
+MAC Address: 68:57:2D:82:E9:D8 (Tuya Smart)
+
+Nmap scan report for nap-smtp-out-01.despegar.com (192.169.5.220)
+Host is up (0.059s latency).
+Not shown: 995 closed tcp ports (reset)
+PORT      STATE SERVICE
+8008/tcp  open  http
+8009/tcp  open  ajp13
+8443/tcp  open  https-alt
+9000/tcp  open  cslistener
+10001/tcp open  scp-config
+MAC Address: D4:F5:47:9C:E6:AB (Google)
+
+Nmap scan report for comm-smtp-00.despegar.com (192.169.5.221)
+Host is up (0.078s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT     STATE SERVICE
+6668/tcp open  irc
+MAC Address: 38:1F:8D:48:2B:26 (Tuya Smart)
+
+Nmap scan report for 192-169-5-53-static.despegar.net (192.169.5.53)
+Host is up (0.0000030s latency).
+All 1000 scanned ports on 192-169-5-53-static.despegar.net (192.169.5.53) are in ignored states.
+Not shown: 1000 closed tcp ports (reset)
+
+# Nmap done at Tue Jun 28 14:08:26 2022 -- 256 IP addresses (17 hosts up) scanned in 44.26 seconds
