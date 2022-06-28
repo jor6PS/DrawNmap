@@ -13,15 +13,12 @@ DESCARGA
 
 COMANDO
 
-# python3 DrawNmap.py <nmap xml format>
+# python3 DrawNmap.py <nmap nmap format>
 
 EJEMPLOS
 
 Archivo único
-# python3 DrawNmap.py examples/nmap1.xml
-
-Múltiples archivos
-# python3 DrawNmap.py examples/*.xml
+# python3 DrawNmap.py examples/nmap_test.nmap
 
 ```
 

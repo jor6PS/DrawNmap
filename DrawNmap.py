@@ -26,11 +26,12 @@ filename = sys.argv
 
 ################### CONVERT XML TO CSV ###################
 
-if isinstance(filename, list):
-    for nmaps in filename:
-        subprocess.call(['python', 'nmaptocsv/nmaptocsv.py', '-i', nmaps, '>> output.csv'], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
-else:
-        subprocess.call(['python', 'nmaptocsv/nmaptocsv.py', '-i', filename[1], '-o', 'output.csv'], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+# if isinstance(filename, list):
+#     for nmaps in filename:
+#         subprocess.call(['python', 'nmaptocsv/nmaptocsv.py', '-i', nmaps, '>', 'output.csv'], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+# else:
+
+subprocess.call(['python', 'nmaptocsv/nmaptocsv.py', '-i', filename[1], '-o', 'output.csv'], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
 
 ################### CREATE DATAFRAME FROM CSV ###################
 
@@ -248,3 +249,5 @@ def update_figure(value):
 
 if __name__ == '__main__':
     app.run_server(debug=True)
+
+os.remove("output.csv")
