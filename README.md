@@ -26,6 +26,7 @@ Archivo único
 
 ```console
 # pip3 install plotly
+# pip3 install ipaddress
 # pip3 install dash
 # pip3 install networkx
 # pip3 install pandas
