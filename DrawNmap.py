@@ -3,6 +3,7 @@
 
 import sys
 import os
+import ipaddress
 import subprocess
 import pandas as pd
 import networkx as nx
@@ -42,9 +43,12 @@ df["PORT"] = df["PORT"].astype(int)
 # Remove duplicated in second loop
 df = df.drop_duplicates(subset=["IP", "PORT"])
 
-# Extract all ports in a list
+# Extract all ports and ips in a list
 all_ports =  df['PORT'].tolist()
 all_ports = sorted(set(all_ports))
+
+all_ips =  df['IP'].tolist()
+all_ips = sorted(set(all_ips), key = ipaddress.IPv4Address)
 
 ################### PREPARE GRAPH ###################
 def network_graph(dataframe):
@@ -185,7 +189,7 @@ def network_graph(dataframe):
 app.layout = html.Div(children=[
     html.Div(children=[
         html.H3('OPEN PORTS'),
-        dcc.Checklist(["All"], [], id="all-checklist"),
+        dcc.Checklist(["All"], ["All"], id="all-checklist"),
         dcc.Checklist(all_ports, value=[],id='port-checklist'),
         html.Br(),
     ], className="one columns"),
@@ -194,39 +198,54 @@ app.layout = html.Div(children=[
         dcc.Graph(id='Graph',figure=network_graph(df)),
         html.Br(),
     ], className="ten columns"),
+    html.Div(children=[
+        html.H3('IP LIST'),
+        dcc.Checklist(["All"], ["All"], id="all2-checklist"),
+        dcc.Checklist(all_ips, value=[],id='ips-checklist'),
+        html.Br(),
+    ], className="one columns")
 ], className="row")
 
 # Callback for adding the all check
 @app.callback(
     Output("port-checklist", "value"),
     Output("all-checklist", "value"),
+    Output("ips-checklist", "value"),
+    Output("all2-checklist", "value"),
     Input("port-checklist", "value"),
     Input("all-checklist", "value"),
+    Input("ips-checklist", "value"),
+    Input("all2-checklist", "value"),
 )
-def sync_checklists(ports_selected, all_selected):
+def sync_checklists(ports_selected, all_selected, ips_selected, all2_selected):
     ctx = callback_context
     input_id = ctx.triggered[0]["prop_id"].split(".")[0]
     if input_id == "port-checklist":
-        all_selected = ["All"] if set(ports_selected) == set(all_ports) else []    
+        all_selected = ["All"] if set(ports_selected) == set(all_ports) else []
+    elif input_id == "ips-checklist":
+        all2_selected = ["All"] if set(ips_selected) == set(all_ips) else []
     else:
         ports_selected = all_ports if all_selected else []
-    return ports_selected, all_selected
+        ips_selected = all_ips if all2_selected else []
+    return ports_selected, all_selected, ips_selected, all2_selected
 
 # Callback to update the graph according to the checklist
 @app.callback(
     Output("Graph", "figure"),
-    Input("port-checklist", "value")
+    Input("port-checklist", "value"),
+    Input("ips-checklist", "value")
 )
-def update_figure(value):
+def update_figure(value, value2):
     ctx = callback_context
     filter_df = pd.DataFrame()
-    if not value:
+    if not value and not value2:
         return network_graph(df)
-    else:
-        for port in ctx.triggered[0]["value"]:
-                filter_df = pd.concat([filter_df, pd.DataFrame.from_records(df[df['PORT'] == port])])
-        return network_graph(filter_df)
-
+    elif value:
+    	filter_df = df.loc[df['PORT'].isin(ctx.triggered[0]["value"])]
+    	return network_graph(filter_df)
+    elif value2:
+    	filter_df = df.loc[df['IP'].isin(ctx.triggered[0]["value"])]
+    	return network_graph(filter_df)
 
 ########### TODO ###########
 
