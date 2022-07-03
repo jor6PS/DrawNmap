@@ -192,18 +192,18 @@ app.layout = html.Div(children=[
         dcc.Checklist(["All"], ["All"], id="all-checklist"),
         dcc.Checklist(all_ports, value=[],id='port-checklist'),
         html.Br(),
-    ], className="one columns"),
+    ], className="two columns"),
     html.Div(children=[
         html.H3('NETWORK DIAGRAM'),
         dcc.Graph(id='Graph',figure=network_graph(df)),
         html.Br(),
-    ], className="ten columns"),
+    ], className="eight columns"),
     html.Div(children=[
         html.H3('IP LIST'),
         dcc.Checklist(["All"], ["All"], id="all2-checklist"),
         dcc.Checklist(all_ips, value=[],id='ips-checklist'),
         html.Br(),
-    ], className="one columns")
+    ], className="two columns")
 ], className="row")
 
 # Callback for adding the all check
